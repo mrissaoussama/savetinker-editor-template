@@ -4,9 +4,19 @@
   "description": "What the editor changes.",
   "version": "0.1.0",
   "api_version": 1,
-  "authors": ["yourname"],
+  "authors": [
+    "yourname"
+  ],
   "source": "https://github.com/yourname/your-repo",
+  "icon": "icon.png",
   "games": [
-    {"platform": "switch", "title_id": "0100000000000000", "name": "My Game", "versions": ["*"]}
+    {
+      "platform": "switch",
+      "title_id": "0100000000000000",
+      "name": "My Game",
+      "versions": [
+        "*"
+      ]
+    }
   ]
 }

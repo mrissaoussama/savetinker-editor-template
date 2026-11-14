@@ -1,0 +1,15 @@
+{
+  "id": "yourname.feature-tour",
+  "name": "Feature Tour",
+  "description": "Uses every part of the editor API on a made-up save. Copy what you need.",
+  "version": "1.0.0",
+  "api_version": 1,
+  "authors": ["yourname"],
+  "source": "https://github.com/yourname/your-repo",
+  "icon": "icon.png",
+  "game_data": true,
+  "games": [
+    {"platform": "switch", "title_id": "0100000000000000", "name": "Feature Tour", "versions": [">=1.0.0"]},
+    {"platform": "3ds", "title_id": "0004000000000000", "name": "Feature Tour"}
+  ]
+}
