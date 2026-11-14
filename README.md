@@ -2,7 +2,7 @@
 
 Template for a repository of [SaveTinker](https://github.com/mrissaoussama/SaveTinker) editors. The API is
 documented in the SaveTinker README; [savetinker-editors](https://github.com/mrissaoussama/savetinker-editors) has
-real ones.
+real ones, including generic editors for Unreal (`st.gvas`) and JSON saves.
 
 | Folder | |
 |---|---|

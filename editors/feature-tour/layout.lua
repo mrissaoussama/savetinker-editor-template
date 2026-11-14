@@ -12,8 +12,8 @@ local layout = {
     subtitles = 0x34,  -- u8: 0x10 on, 0x00 off
     door = 0x35,       -- u8: 0 locked, 1 open, 2 broken
     seed = 0x38,       -- u32, shown in hex
-    heroes = 0x40,     -- 3 x { u8 level, u8 unlocked, u16 hp, u32 exp }
-    heroSize = 8,
+    visited = 0x3C,    -- 32 flags, one per area
+    heroes = 0x40,     -- 3 heroes
     heroCount = 3,
     bag = 0x60,        -- 8 x u16 item ids
     bagSlots = 8,
@@ -25,8 +25,11 @@ function layout.checksumOf(file)
     return st.hash.crc32(file:bytes(0x08, file:size() - 0x08))
 end
 
-function layout.hero(index)
-    return layout.heroes + index * layout.heroSize
-end
+layout.Hero = st.struct{
+    { "level", "u8" },
+    { "unlocked", "u8" },
+    { "hp", "u16" },
+    { "exp", "u32" },
+}
 
 return layout

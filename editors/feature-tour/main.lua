@@ -41,30 +41,26 @@ local function player(page, file)
 end
 
 local function heroes(page, file, names)
-    for i = 0, layout.heroCount - 1 do
-        local at = layout.hero(i)
-        local unlocked = file:field(at + 1, "u8")
-        page:section({ title = names[i + 1], key = "hero" .. i, collapsed = i > 0, actions = {
+    for i, hero in ipairs(layout.Hero:array(file, layout.heroes, layout.heroCount)) do
+        page:section({ title = names[i], key = "hero" .. i, collapsed = i > 1, actions = {
             { label = "Max out", run = function()
                 -- Several writes in a button already form one undo step; st.transaction does it anywhere.
-                st.transaction("Max out " .. names[i + 1], function()
-                    file:set(at, "u8", 99)
-                    file:set(at + 2, "u16", 9999)
-                    file:set(at + 4, "u32", 9999999)
-                    unlocked:set(1)
+                st.transaction("Max out " .. names[i], function()
+                    hero.level:set(99)
+                    hero.hp:set(9999)
+                    hero.exp:set(9999999)
+                    hero.unlocked:set(1)
                 end)
             end },
         } }, function(section)
-            section:toggle{ label = "Unlocked", bind = unlocked, key = "unlocked" }
-            if unlocked:get() == 0 then
+            section:toggle{ label = "Unlocked", bind = hero.unlocked, key = "unlocked" }
+            if hero.unlocked:get() == 0 then
                 section:note("Unlock the hero to edit their stats.")
                 return
             end
-            section:int{ label = "Level", bind = file:field(at, "u8"), min = 1, max = 99, key = "level" }
-            section:int{ label = "HP", bind = file:field(at + 2, "u16"), max = 9999, step = 50, key = "hp" }
-            section:int{ label = "Experience", key = "exp", max = 9999999, step = 1000, bind = st.bind(
-                function() return (string.unpack("<I4", file:bytes(at + 4, 4))) end,
-                function(value) file:setBytes(at + 4, string.pack("<I4", value)) end) }
+            section:int{ label = "Level", bind = hero.level, min = 1, max = 99, key = "level" }
+            section:int{ label = "HP", bind = hero.hp, max = 9999, step = 50, key = "hp" }
+            section:int{ label = "Experience", bind = hero.exp, max = 9999999, step = 1000, key = "exp" }
         end)
     end
 end
@@ -94,6 +90,11 @@ local function world(page, file)
     if expansion:get() and not st.game.has_dlc("1001") then
         page:warning("The expansion is enabled in this save but its DLC is not installed.")
     end
+    page:section({ title = "Visited areas", collapsed = true }, function(section)
+        for area = 0, 31 do
+            section:toggle{ label = "Area " .. (area + 1), bind = file:flag(layout.visited, area), key = "area" .. area }
+        end
+    end)
     page:separator()
     page:popup({ label = "Danger zone" }, function(popup)
         popup:warning("These change several values at once. Undo with ZL.")
@@ -141,6 +142,9 @@ local function packing(page, file)
     local sealed = st.crypto.aes_encrypt("ctr", key, content, iv)
     page:label{ label = "AES-CTR", value = st.hex(sealed:sub(1, 8)) .. "..." }
     page:label{ label = "AES-CMAC", value = st.hex(st.crypto.aes_cmac(key, content)) }
+    local es3 = require("st.es3")
+    page:label{ label = "Easy Save 3", value = es3.decode(es3.encode('{"gold":5}', "password", { gzip = true }), "password") }
+    page:label{ label = "PBKDF2", value = st.hex(st.crypto.pbkdf2("sha1", "password", iv, 100, 16)) }
     page:label{ label = "HMAC-SHA256", value = st.hex(st.hash.hmac_sha256(key, content)):sub(1, 16) .. "..." }
     page:label{ label = "XOR", value = st.hex(st.crypto.xor(content:sub(1, 4), "\255")) }
 end
