@@ -1,0 +1,12 @@
+{
+  "id": "yourname.my-game",
+  "name": "My Game Editor",
+  "description": "What the editor changes.",
+  "version": "0.1.0",
+  "api_version": 1,
+  "authors": ["yourname"],
+  "source": "https://github.com/yourname/your-repo",
+  "games": [
+    {"platform": "switch", "title_id": "0100000000000000", "name": "My Game", "versions": ["*"]}
+  ]
+}
