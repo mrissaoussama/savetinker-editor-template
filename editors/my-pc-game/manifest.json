@@ -12,12 +12,8 @@
   "games": [
     {
       "platform": "pc",
-      "steam_app_id": 480,
-      "name": "My PC Game",
-      "save_paths": [
-        "%LOCALAPPDATA%/MyPcGame/Saved/SaveGames/*/Slot*.sav",
-        "%DOCUMENTS%/My Games/MyPcGame/Slot*.sav"
-      ]
+      "title_id": "00000000000001E0",
+      "name": "My PC Game"
     }
   ]
 }
