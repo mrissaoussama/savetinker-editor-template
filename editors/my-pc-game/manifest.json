@@ -1,0 +1,23 @@
+{
+  "id": "yourname.my-pc-game",
+  "name": "My PC Game Editor",
+  "description": "What the editor changes.",
+  "version": "0.1.0",
+  "api_version": 1,
+  "authors": [
+    "yourname"
+  ],
+  "source": "https://github.com/yourname/your-repo",
+  "icon": "icon.png",
+  "games": [
+    {
+      "platform": "pc",
+      "steam_app_id": 480,
+      "name": "My PC Game",
+      "save_paths": [
+        "%LOCALAPPDATA%/MyPcGame/Saved/SaveGames/*/Slot*.sav",
+        "%DOCUMENTS%/My Games/MyPcGame/Slot*.sav"
+      ]
+    }
+  ]
+}

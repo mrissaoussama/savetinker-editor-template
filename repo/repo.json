@@ -1,0 +1,90 @@
+{
+  "name": "My editors",
+  "maintainer": "yourname",
+  "api_version": 1,
+  "platforms": [
+    "switch",
+    "3ds",
+    "pc"
+  ],
+  "editors": [
+    {
+      "id": "yourname.feature-tour",
+      "name": "Feature Tour",
+      "description": "Uses every part of the editor API on a made-up save. Copy what you need.",
+      "version": "1.0.0",
+      "api_version": 1,
+      "authors": [
+        "yourname"
+      ],
+      "source": "https://github.com/yourname/your-repo",
+      "games": [
+        {
+          "platform": "switch",
+          "title_id": "0100000000000000",
+          "name": "Feature Tour",
+          "versions": [
+            ">=1.0.0"
+          ]
+        },
+        {
+          "platform": "3ds",
+          "title_id": "0004000000000000",
+          "name": "Feature Tour"
+        }
+      ],
+      "download": "editors/yourname.feature-tour-1.0.0.zip",
+      "sha256": "0a6177f141fc919a2ee14023cd65216a9b822c38666a63f7fc32b21373ef7a91",
+      "size": 5406
+    },
+    {
+      "id": "yourname.my-game",
+      "name": "My Game Editor",
+      "description": "What the editor changes.",
+      "version": "0.1.0",
+      "api_version": 1,
+      "authors": [
+        "yourname"
+      ],
+      "source": "https://github.com/yourname/your-repo",
+      "games": [
+        {
+          "platform": "switch",
+          "title_id": "0100000000000000",
+          "name": "My Game",
+          "versions": [
+            "*"
+          ]
+        }
+      ],
+      "download": "editors/yourname.my-game-0.1.0.zip",
+      "sha256": "10c4499adf0819a4132ad586174bbfff54085a7066d67ba8d25d9133bc5b6b7a",
+      "size": 1538
+    },
+    {
+      "id": "yourname.my-pc-game",
+      "name": "My PC Game Editor",
+      "description": "What the editor changes.",
+      "version": "0.1.0",
+      "api_version": 1,
+      "authors": [
+        "yourname"
+      ],
+      "source": "https://github.com/yourname/your-repo",
+      "games": [
+        {
+          "platform": "pc",
+          "title_id": "00000000000001E0",
+          "name": "My PC Game",
+          "save_paths": [
+            "%LOCALAPPDATA%/MyPcGame/Saved/SaveGames/*/Slot*.sav",
+            "%DOCUMENTS%/My Games/MyPcGame/Slot*.sav"
+          ]
+        }
+      ],
+      "download": "editors/yourname.my-pc-game-0.1.0.zip",
+      "sha256": "e8fcc651143f66415b24f64df8aea8c768f6d8b3a25df594d63f33f9da5a664a",
+      "size": 1396
+    }
+  ]
+}
